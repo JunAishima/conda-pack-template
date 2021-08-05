@@ -1,10 +1,11 @@
-import os
 import argparse
+import json
+import os
+import traceback
+from urllib.parse import urlencode
+
 import requests
 import yaml
-import json
-from urllib.parse import urlencode
-import traceback
 
 
 def search_for_deposition(
