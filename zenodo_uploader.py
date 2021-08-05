@@ -6,6 +6,7 @@ import json
 from urllib.parse import urlencode
 import traceback
 
+
 def search_for_deposition(
     title,
     owner=None,
@@ -59,6 +60,7 @@ def search_for_deposition(
         deposition["links"]["html"].replace("deposit", "record"),
     )
 
+
 def create_new_version(
     deposition_id, token, zenodo_server="https://sandbox.zenodo.org/api/"
 ):
@@ -86,6 +88,7 @@ def create_new_version(
         deposition["links"]["html"].replace("deposit", "record"),
     )
 
+
 def create_new_deposition(token, zenodo_server="https://sandbox.zenodo.org/api/"):
     url = f"{zenodo_server}deposit/depositions"
     r = requests.post(
@@ -103,6 +106,7 @@ def create_new_deposition(token, zenodo_server="https://sandbox.zenodo.org/api/"
         deposition["links"]["bucket"],
         deposition["links"]["html"].replace("deposit", "record"),
     )
+
 
 def upload_to_zenodo(
     deposition_id,
@@ -129,7 +133,8 @@ def upload_to_zenodo(
             current_file_checksum = content.split("=")[-1].strip()
 
         if current_file_checksum in files_checksums:
-            print(f"File: {filename} is already uploaded!\n")
+            print(f"File: {filename} with md5 checksum ({current_file_checksum}) "
+                  f"is already uploaded!\n")
             return
         else:
             print(f"No conflicting files!\n")
@@ -141,6 +146,7 @@ def upload_to_zenodo(
         )
         r.raise_for_status()
         print(f"\nFile Uploaded successfully!\nFile link: {file_url}")
+
 
 def add_meta_data(
     deposition_id,
@@ -158,6 +164,7 @@ def add_meta_data(
     )
 
     r.raise_for_status()
+
 
 def publish_file(
     deposition_id,
